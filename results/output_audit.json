@@ -1,0 +1,435 @@
+{
+  "source": "output/result{1,2,3,4-2,4-3}.xlsx",
+  "convention": {
+    "q1": "附件1 电价（元/kWh）× 计划购电量",
+    "q2_q3": "附件1 电价（题面：每天的电价相同）",
+    "q4_2_q4_3": "附件4 实时电价",
+    "emergency": "5 × 交易时刻电价",
+    "adjustment": "0.5× 下调违约、1.5× 上调违约"
+  },
+  "result1": {
+    "purchase_kwh": 59482.69899835391,
+    "cost_cny": 35126.94858928963,
+    "charge_kwh": 20740.66613168725,
+    "discharge_kwh": 16799.939566666668,
+    "soc_start_kwh": 6000.0,
+    "soc_end_kwh": 6000.0
+  },
+  "q2": {
+    "days": 334,
+    "total_cost_cny": 17469237.65754779,
+    "plan_cost_cny": 16055010.429937605,
+    "emergency_cost_cny": 1414227.2276101848,
+    "emergency_energy_kwh": 363622.64635205094,
+    "over_plan_penalty_cny": 0.0,
+    "under_plan_penalty_cny": 0.0,
+    "purchase_kwh": 25843313.811103348,
+    "adjust_kwh": 25843313.811103348,
+    "emergency_blocks": 2514,
+    "min_daily_balance_kwh": 397.93886666668186
+  },
+  "q3": {
+    "days": 334,
+    "total_cost_cny": 14705624.884842282,
+    "plan_cost_cny": 11035390.756995533,
+    "emergency_cost_cny": 270629.93469366664,
+    "emergency_energy_kwh": 79350.76801666665,
+    "over_plan_penalty_cny": 15276.478320219627,
+    "under_plan_penalty_cny": 3384327.714832862,
+    "purchase_kwh": 18194936.01642082,
+    "adjust_kwh": 21566916.605532765,
+    "emergency_blocks": 1117,
+    "min_daily_balance_kwh": 549.3459666666593
+  },
+  "q4_2": {
+    "days": 334,
+    "total_cost_cny": 17727459.43166564,
+    "plan_cost_cny": 16113999.202796627,
+    "emergency_cost_cny": 1613460.2288690158,
+    "emergency_energy_kwh": 360039.2309494392,
+    "over_plan_penalty_cny": 0.0,
+    "under_plan_penalty_cny": 0.0,
+    "purchase_kwh": 25913358.124456912,
+    "adjust_kwh": 25913358.124456912,
+    "emergency_blocks": 2503,
+    "min_daily_balance_kwh": 397.9388666666855
+  },
+  "q4_3": {
+    "days": 334,
+    "total_cost_cny": 15384235.06210229,
+    "plan_cost_cny": 11510211.467168717,
+    "emergency_cost_cny": 259290.0164662333,
+    "emergency_energy_kwh": 75761.01855,
+    "over_plan_penalty_cny": 6959.486856687357,
+    "under_plan_penalty_cny": 3607774.091610651,
+    "purchase_kwh": 18267935.88561131,
+    "adjust_kwh": 21680322.902027566,
+    "emergency_blocks": 1066,
+    "min_daily_balance_kwh": 549.3459666666811
+  },
+  "checks": [
+    {
+      "check": "result1 时段标签与模板逐字一致",
+      "pass": true,
+      "detail": "144 行",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "result1 计划购电量合计 = q1.json 计划量",
+      "pass": true,
+      "detail": "59482.70 vs 59482.70",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "result1 购电费 = Σ 附件1电价×购电量 = q1.json 最优值",
+      "pass": true,
+      "detail": "35126.948589 vs 35126.948589",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "result1 0:00 与 24:00 储电量均等于初始 6000 kWh",
+      "pass": true,
+      "detail": "6000.0 / 6000.0",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "result1 充放电量与 SOC 日循环恒等式",
+      "pass": true,
+      "detail": "Σ(ηc·c − d/ηd) = 0.000000000 kWh",
+      "max_abs_deviation": 3.637978807091713e-12
+    },
+    {
+      "check": "result1 充放电量与 q1.json 一致",
+      "pass": true,
+      "detail": "20740.67 / 16799.94",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q2 计划购电量日合计列自洽",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q2 逐日购电费列 = Σ 电价×计划量（附件1电价）",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q2 紧急购电量合计 = 记录值",
+      "pass": true,
+      "detail": "363622.646352 vs 363622.646352",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q2 账目合计 = 计划费+紧急费+违约费 = 记录总额",
+      "pass": true,
+      "detail": "17469237.657548 vs 17469237.657548",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q2 紧急购电费（5 倍）与记录值同量级（块内均匀分摊口径）",
+      "pass": true,
+      "detail": "1422605.97 vs 1414227.23",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q2 每日 0:00 与 24:00 储电量均为 6000 kWh",
+      "pass": true,
+      "detail": "max|Δ| = 0.000e+00",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q2 充放电量与 SOC 日循环恒等式",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 1.0913936421275139e-11
+    },
+    {
+      "check": "q2 单日充放电量不超过 6 h 额定功率",
+      "pass": true,
+      "detail": "max c=25315.1 / max d=20505.2",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q2 日级功率平衡不违反（光伏+购电+放电+紧急 ≥ 负荷+充电）",
+      "pass": true,
+      "detail": "最小余量 397.938867 kWh",
+      "max_abs_deviation": 397.93886666668186
+    },
+    {
+      "check": "q2 逐日计划购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q2 逐日充放电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 7.275957614183426e-12
+    },
+    {
+      "check": "q2 逐日紧急购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 3.637978807091713e-12
+    },
+    {
+      "check": "q3 调整购电量日合计列自洽",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q3 计划购电量日合计列自洽",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q3 逐日购电费列 = Σ 电价×计划量（附件1电价）",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q3 紧急购电量合计 = 记录值",
+      "pass": true,
+      "detail": "79350.768017 vs 79350.768017",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q3 超额违约费 0.5Σπ(q^plan−q^adj)^+ = 记录值",
+      "pass": true,
+      "detail": "15276.478320 vs 15276.478320",
+      "max_abs_deviation": 1.8189894035458565e-12
+    },
+    {
+      "check": "q3 欠额违约费 1.5Σπ(q^adj−q^plan)^+ = 记录值",
+      "pass": true,
+      "detail": "3384327.714833 vs 3384327.714833",
+      "max_abs_deviation": 4.656612873077393e-10
+    },
+    {
+      "check": "q3 账目合计 = 计划费+紧急费+违约费 = 记录总额",
+      "pass": true,
+      "detail": "14705624.884842 vs 14705624.884842",
+      "max_abs_deviation": 1.862645149230957e-09
+    },
+    {
+      "check": "q3 紧急购电费（5 倍）与记录值同量级（块内均匀分摊口径）",
+      "pass": true,
+      "detail": "280163.36 vs 270629.93",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q3 每日 0:00 与 24:00 储电量均为 6000 kWh",
+      "pass": true,
+      "detail": "max|Δ| = 0.000e+00",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q3 充放电量与 SOC 日循环恒等式",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 7.275957614183426e-12
+    },
+    {
+      "check": "q3 单日充放电量不超过 6 h 额定功率",
+      "pass": true,
+      "detail": "max c=25854.8 / max d=20942.4",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q3 日级功率平衡不违反（光伏+购电+放电+紧急 ≥ 负荷+充电）",
+      "pass": true,
+      "detail": "最小余量 549.345967 kWh",
+      "max_abs_deviation": 549.3459666666593
+    },
+    {
+      "check": "q3 逐日计划购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q3 逐日充放电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 7.275957614183426e-12
+    },
+    {
+      "check": "q3 逐日紧急购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 2.2737367544323206e-13
+    },
+    {
+      "check": "q4_2 计划购电量日合计列自洽",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_2 逐日购电费列 = Σ 电价×计划量（附件4电价）",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_2 紧急购电量合计 = 记录值",
+      "pass": true,
+      "detail": "360039.230949 vs 360039.230949",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_2 账目合计 = 计划费+紧急费+违约费 = 记录总额",
+      "pass": true,
+      "detail": "17727459.431666 vs 17727459.431666",
+      "max_abs_deviation": 3.725290298461914e-09
+    },
+    {
+      "check": "q4_2 紧急购电费（5 倍）与记录值同量级（块内均匀分摊口径）",
+      "pass": true,
+      "detail": "1606300.16 vs 1613460.23",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q4_2 每日 0:00 与 24:00 储电量均为 6000 kWh",
+      "pass": true,
+      "detail": "max|Δ| = 0.000e+00",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q4_2 充放电量与 SOC 日循环恒等式",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 1.0913936421275139e-11
+    },
+    {
+      "check": "q4_2 单日充放电量不超过 6 h 额定功率",
+      "pass": true,
+      "detail": "max c=29314.7 / max d=23744.9",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q4_2 日级功率平衡不违反（光伏+购电+放电+紧急 ≥ 负荷+充电）",
+      "pass": true,
+      "detail": "最小余量 397.938867 kWh",
+      "max_abs_deviation": 397.9388666666855
+    },
+    {
+      "check": "q4_2 逐日计划购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_2 逐日充放电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 7.275957614183426e-12
+    },
+    {
+      "check": "q4_2 逐日紧急购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 1.8189894035458565e-12
+    },
+    {
+      "check": "q4_3 调整购电量日合计列自洽",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 计划购电量日合计列自洽",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 逐日购电费列 = Σ 电价×计划量（附件4电价）",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 紧急购电量合计 = 记录值",
+      "pass": true,
+      "detail": "75761.018550 vs 75761.018550",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 超额违约费 0.5Σπ(q^plan−q^adj)^+ = 记录值",
+      "pass": true,
+      "detail": "6959.486857 vs 6959.486857",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 欠额违约费 1.5Σπ(q^adj−q^plan)^+ = 记录值",
+      "pass": true,
+      "detail": "3607774.091611 vs 3607774.091611",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 账目合计 = 计划费+紧急费+违约费 = 记录总额",
+      "pass": true,
+      "detail": "15384235.062102 vs 15384235.062102",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 紧急购电费（5 倍）与记录值同量级（块内均匀分摊口径）",
+      "pass": true,
+      "detail": "266963.87 vs 259290.02",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q4_3 每日 0:00 与 24:00 储电量均为 6000 kWh",
+      "pass": true,
+      "detail": "max|Δ| = 0.000e+00",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q4_3 充放电量与 SOC 日循环恒等式",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 1.0913936421275139e-11
+    },
+    {
+      "check": "q4_3 单日充放电量不超过 6 h 额定功率",
+      "pass": true,
+      "detail": "max c=27376.2 / max d=22174.7",
+      "max_abs_deviation": null
+    },
+    {
+      "check": "q4_3 日级功率平衡不违反（光伏+购电+放电+紧急 ≥ 负荷+充电）",
+      "pass": true,
+      "detail": "最小余量 549.345967 kWh",
+      "max_abs_deviation": 549.3459666666811
+    },
+    {
+      "check": "q4_3 逐日计划购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 0.0
+    },
+    {
+      "check": "q4_3 逐日充放电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 7.275957614183426e-12
+    },
+    {
+      "check": "q4_3 逐日紧急购电量 = 记录值",
+      "pass": true,
+      "detail": "",
+      "max_abs_deviation": 2.2737367544323206e-13
+    }
+  ],
+  "passed": 60,
+  "failed": 0,
+  "status": "PASS"
+}

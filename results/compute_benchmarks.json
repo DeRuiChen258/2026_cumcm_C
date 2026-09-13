@@ -1,0 +1,184 @@
+{
+  "pipeline": [
+    {
+      "stage": "C++ 清洗 + 导出",
+      "seconds": 0.1741751499998827,
+      "language": "C++17"
+    },
+    {
+      "stage": "C++ 不变量校验 I1–I8",
+      "seconds": 0.13231366699983482,
+      "language": "C++17"
+    },
+    {
+      "stage": "Q1 LP + DP 互证",
+      "seconds": 0.0679315049997058,
+      "language": "Python 3.12"
+    },
+    {
+      "stage": "共形层标定",
+      "seconds": 3.0569818649996705,
+      "language": "Python 3.12"
+    },
+    {
+      "stage": "Q2 两阶段随机规划",
+      "seconds": 19.63677381200023,
+      "language": "Python 3.12"
+    },
+    {
+      "stage": "Q3 滚动 MPC + S0–S5",
+      "seconds": 5.873092824000196,
+      "language": "Python 3.12"
+    },
+    {
+      "stage": "Q4 波动电价 + 风险层",
+      "seconds": 56.545178526999734,
+      "language": "Python 3.12"
+    },
+    {
+      "stage": "五个结果文件写出",
+      "seconds": 1.0254749370001264,
+      "language": "Python 3.12"
+    }
+  ],
+  "dp": {
+    "horizon_slots": 24,
+    "rows": [
+      {
+        "step_kwh": 120.0,
+        "states": 81,
+        "actions": 14,
+        "naive_seconds": 0.024096319999898697,
+        "vector_seconds": 0.0005597750000561064,
+        "speedup": 43.0464382966076,
+        "abs_diff": 0.0
+      },
+      {
+        "step_kwh": 60.0,
+        "states": 161,
+        "actions": 28,
+        "naive_seconds": 0.09466967500020473,
+        "vector_seconds": 0.0008074019997366122,
+        "speedup": 117.25221764509816,
+        "abs_diff": 0.0
+      },
+      {
+        "step_kwh": 30.0,
+        "states": 321,
+        "actions": 56,
+        "naive_seconds": 0.3791136009999718,
+        "vector_seconds": 0.0021334430002752924,
+        "speedup": 177.70036553638988,
+        "abs_diff": 0.0
+      },
+      {
+        "step_kwh": 15.0,
+        "states": 641,
+        "actions": 112,
+        "naive_seconds": 1.521676349000245,
+        "vector_seconds": 0.006426094999824272,
+        "speedup": 236.79642909758675,
+        "abs_diff": 0.0
+      }
+    ]
+  },
+  "lp": {
+    "dense_seconds": 0.014587231999939831,
+    "sparse_seconds": 0.013891349999994418,
+    "dense_peak_bytes": 2728303,
+    "sparse_peak_bytes": 170822,
+    "library_total_seconds": 0.0032583229999545438,
+    "speedup_sparse_vs_dense": 1.050094627228145,
+    "memory_ratio": 15.971613726569178,
+    "rolling_horizons": [
+      {
+        "start_slot": 0,
+        "slots": 144,
+        "seconds": 0.003127526999833208
+      },
+      {
+        "start_slot": 36,
+        "slots": 108,
+        "seconds": 0.002515432999643963
+      },
+      {
+        "start_slot": 72,
+        "slots": 72,
+        "seconds": 0.001959905000148865
+      },
+      {
+        "start_slot": 108,
+        "slots": 36,
+        "seconds": 0.0014301060000434518
+      }
+    ],
+    "rolling_speedup_full_over_truncated": 2.186919710663533
+  },
+  "parallel": {
+    "days": 120,
+    "rows": [
+      {
+        "workers": 1,
+        "seconds": 0.3623488839998572,
+        "speedup": 1.0,
+        "efficiency": 1.0
+      },
+      {
+        "workers": 2,
+        "seconds": 0.18868274300029952,
+        "speedup": 1.9204134847630554,
+        "efficiency": 0.9602067423815277
+      },
+      {
+        "workers": 4,
+        "seconds": 0.10410596600013378,
+        "speedup": 3.4805775107969468,
+        "efficiency": 0.8701443776992367
+      },
+      {
+        "workers": 8,
+        "seconds": 0.057186377000107314,
+        "speedup": 6.336279775149547,
+        "efficiency": 0.7920349718936934
+      },
+      {
+        "workers": 16,
+        "seconds": 0.037133410000024014,
+        "speedup": 9.7580287940058,
+        "efficiency": 0.6098767996253625
+      }
+    ],
+    "identical_results": true,
+    "cores_available": 32
+  },
+  "scenarios": {
+    "rows": [
+      {
+        "scenarios": 5,
+        "variables": 1295,
+        "seconds": 0.006641552000019146
+      },
+      {
+        "scenarios": 10,
+        "variables": 2015,
+        "seconds": 0.009387419000177033
+      },
+      {
+        "scenarios": 20,
+        "variables": 3455,
+        "seconds": 0.016978249999738182
+      },
+      {
+        "scenarios": 30,
+        "variables": 4895,
+        "seconds": 0.025560950999988563
+      },
+      {
+        "scenarios": 40,
+        "variables": 6335,
+        "seconds": 0.03541528999994625
+      }
+    ],
+    "deterministic_seconds": 0.0032864470003914903
+  }
+}

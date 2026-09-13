@@ -1,0 +1,60 @@
+{
+  "checks": [
+    {
+      "name": "slot mapping day 69 slot 129",
+      "pass": true,
+      "detail": "clean=(4531.1500,0.0000,0.9645) vs attachment row 71 col 130"
+    },
+    {
+      "name": "slot mapping day 170 slot 35",
+      "pass": true,
+      "detail": "clean=(2634.4472,959.2791,0.4295) vs attachment row 172 col 36"
+    },
+    {
+      "name": "slot mapping day 288 slot 123",
+      "pass": true,
+      "detail": "clean=(4230.0100,0.0000,1.2728) vs attachment row 290 col 124"
+    },
+    {
+      "name": "result2 wide table matches stored plan array",
+      "pass": true,
+      "detail": "0 mismatching spot-checked cells (90 samples)"
+    },
+    {
+      "name": "result1.xlsx sheet names and headers identical to attachment-5 template",
+      "pass": true,
+      "detail": "sheets=['计划购电量', '充放电量']"
+    },
+    {
+      "name": "result2.xlsx sheet names and headers identical to attachment-5 template",
+      "pass": true,
+      "detail": "sheets=['计划购电量', '充放电量', '紧急购电量']"
+    },
+    {
+      "name": "result3.xlsx sheet names and headers identical to attachment-5 template",
+      "pass": true,
+      "detail": "sheets=['计划购电量', '调整购电量', '充放电量', '紧急购电量']"
+    },
+    {
+      "name": "result4-2.xlsx sheet names and headers identical to attachment-5 template",
+      "pass": true,
+      "detail": "sheets=['计划购电量', '充放电量', '紧急购电量']"
+    },
+    {
+      "name": "result4-3.xlsx sheet names and headers identical to attachment-5 template",
+      "pass": true,
+      "detail": "sheets=['计划购电量', '调整购电量', '充放电量', '紧急购电量']"
+    },
+    {
+      "name": "result2 dates are Excel date cells",
+      "pass": true,
+      "detail": "[datetime.datetime(2025, 2, 1, 0, 0), datetime.datetime(2025, 5, 10, 0, 0), datetime.datetime(2025, 12, 31, 0, 0)]"
+    },
+    {
+      "name": "daily purchase column equals the sum of the 144 slots",
+      "pass": true,
+      "detail": "checked rows 2 / 150 / 335"
+    }
+  ],
+  "all_pass": true
+}

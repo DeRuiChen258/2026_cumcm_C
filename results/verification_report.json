@@ -1,0 +1,681 @@
+{
+  "gates": [
+    {
+      "gate": "G0",
+      "title": "夜间清洗与数据质量",
+      "checks": [
+        [
+          "I1-I8 all pass",
+          true,
+          "I1:PASS; I2:PASS; I3:PASS; I4:PASS; I5:PASS; I6:PASS; I7:PASS; I8:PASS"
+        ],
+        [
+          "core-night zero turnover",
+          true,
+          "23316 -> 25766"
+        ],
+        [
+          "quarantine = 129 hard outliers",
+          true,
+          "129"
+        ],
+        [
+          "08:00-16:00 zero-free",
+          true,
+          "0"
+        ],
+        [
+          "near-zero price cells = 28",
+          true,
+          "28"
+        ],
+        [
+          "附件1 shoulder small values = 6",
+          true,
+          "6"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G1",
+      "title": "问题1 LP/DP 互证与基线",
+      "checks": [
+        [
+          "cost below B2 baseline",
+          true,
+          "35126.95 < 48052.05"
+        ],
+        [
+          "terminal SoC = 6000 kWh",
+          true,
+          "6000.00"
+        ],
+        [
+          "SoC inside [1200, 10800]",
+          true,
+          "[1200.0, 10800.0]"
+        ],
+        [
+          "proposition 1 (no simultaneous charge/discharge)",
+          true,
+          "0.00e+00 kW"
+        ],
+        [
+          "DP monotone convergence",
+          true,
+          "35774.5 -> 35397.3 -> 35306.8 -> 35199.9"
+        ],
+        [
+          "DP bracket LP optimum within 1%",
+          true,
+          "min rel err 2.08e-03"
+        ],
+        [
+          "daily energy identity residual < 1e-9 kWh (v2 Q1-4)",
+          true,
+          "residual 7.276e-12 kWh"
+        ],
+        [
+          "KKT deadband has no interior violation (v2 Q1-5)",
+          true,
+          "interior violations 0, bound-active actions 0"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G2",
+      "title": "共形覆盖率（0.80 / 0.25 / 0.70）",
+      "checks": [
+        [
+          "q2_plan coverage within 3pp",
+          true,
+          "nominal 0.80, actual 0.7948, dev -0.52pp"
+        ],
+        [
+          "q3_plan coverage within 3pp",
+          true,
+          "nominal 0.25, actual 0.2483, dev -0.17pp"
+        ],
+        [
+          "q3_adjust coverage within 3pp",
+          true,
+          "nominal 0.70, actual 0.6963, dev -0.37pp"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G3",
+      "title": "问题2 全年回溯与对照",
+      "checks": [
+        [
+          "334 days backtested",
+          true,
+          "334"
+        ],
+        [
+          "cheaper than no-margin plan",
+          true,
+          "17469238 vs 24913778"
+        ],
+        [
+          "online cost above perfect-information bound",
+          true,
+          "17469238 > 12245382"
+        ],
+        [
+          "cross-day coupling quantified",
+          true,
+          "terminal-value expected 15999584 vs cycle 16909041"
+        ],
+        [
+          "emergency blocks merged",
+          true,
+          "block count consistent"
+        ],
+        [
+          "MaxEnt dual converged (v2 Q2-1)",
+          true,
+          "max |grad| 1.23e-05, min Hessian eig 1.02e-04"
+        ],
+        [
+          "PV physical lower bound exported (v2 Q2-4/Q2-5)",
+          true,
+          "q2_pv_lower.npy + q2_theta.npy, mean 48687 kWh/day"
+        ],
+        [
+          "ACI path identity reported (v2 Q2-2)",
+          true,
+          "bound 0.29910179640718565"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G4",
+      "title": "问题3 结算复算与预报时次建议",
+      "checks": [
+        [
+          "settlement formula reproducible",
+          true,
+          "recomputed 14705624.88 vs recorded 14705624.88 元"
+        ],
+        [
+          "S0-S5 subset experiment present",
+          true,
+          "{'S0': 21289146, 'S1': 15159619, 'S2': 14696301, 'S3': 14705625, 'S4': 17059427, 'S5': 12245382}"
+        ],
+        [
+          "explicit recommendation on extra forecast times",
+          true,
+          "6:00 6129528 / 12:00 463318 / 18:00 -9324 元"
+        ],
+        [
+          "night/day value split reported",
+          true,
+          "{\"night_core\": {\"S0->S1\": -166140.93908666263, \"S1->S2\": 17602.211081555834, \"S2->S3\": -9327.842768926668}, \"daylight\": {\"S0->S1\": 6295668.578740318, \"S1->S2\": 445715.5798881317, \"S2->S3\": 3.850675982505627}}"
+        ],
+        [
+          "lead-time envelope exported (v2 Q3-1)",
+          true,
+          "360 slot points, 4 vintages"
+        ],
+        [
+          "NAV counterfactual gate reported (v2 Q3-3)",
+          true,
+          "680/1002 stages accepted, total NAV 6583521 CNY"
+        ],
+        [
+          "endogenous no-adjustment band reported (v2 Q3-2)",
+          true,
+          "[-0.5 p_t, 1.5 p_t] (endogenous, settlement-derived)"
+        ],
+        [
+          "NAV / lead-time traces carry no per-day vector payload",
+          true,
+          "lead-time curve moved to results/q3_lead_time.csv"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G5",
+      "title": "问题4 尾部风险与软约束依据",
+      "checks": [
+        [
+          "spike conformal coverage >= 90%",
+          true,
+          "94.11% over 5011 spike slots"
+        ],
+        [
+          "CVaR Pareto front computed",
+          true,
+          "beta=0.00->CVaR 89774; beta=0.25->CVaR 82391; beta=0.50->CVaR 80737; beta=0.75->CVaR 79948; beta=0.90->CVaR 79810"
+        ],
+        [
+          "CVaR reduces tail risk",
+          true,
+          "89774 -> 79810 元/日"
+        ],
+        [
+          "soft-constraint abuse demonstrated for small rho1",
+          true,
+          "rho1=0.1x->slack 3128643 kWh; rho1=0.3x->slack 1441513 kWh; rho1=0.5x->slack 659864 kWh; rho1=1.0x->slack 0 kWh; rho1=6.0x->slack 0 kWh"
+        ],
+        [
+          "Student-t copula fitted with tail dependence (v2 Q4-2)",
+          true,
+          "df 7.0, tail dep 0.393"
+        ],
+        [
+          "CBF safety filter: zero SOC violation (v2 Q4-4)",
+          true,
+          "373 projected slots, 0 violations"
+        ],
+        [
+          "DETC dispatch reduction >= 50% (v2 Q4-5)",
+          true,
+          "52.6% fewer dispatches, terminal repair 685 kWh/day"
+        ],
+        [
+          "daily-cycle contract restored on every ablation day (v2 Q4-12)",
+          true,
+          "70/70 days"
+        ],
+        [
+          "A0-A4 ablation metrics present (v2 Q4-6)",
+          true,
+          "A0_full, A1_independent_scenarios, A2_no_price_band, A3_no_cbf, A4_periodic_trigger"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G6-G8",
+      "title": "一致性 / 诚信 / 填报",
+      "checks": [
+        [
+          "result1.xlsx exists",
+          true,
+          "/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/output/result1.xlsx"
+        ],
+        [
+          "result1.xlsx/计划购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result1.xlsx/计划购电量 shape (145, 2)",
+          true,
+          "actual (145, 2)"
+        ],
+        [
+          "result1.xlsx/充放电量 present",
+          true,
+          ""
+        ],
+        [
+          "result1.xlsx/充放电量 shape (7, 5)",
+          true,
+          "actual (7, 5)"
+        ],
+        [
+          "result1.xlsx/计划购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result1.xlsx/充放电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result1 slot labels identical to template",
+          true,
+          "0:10-0:20 .. 0:00+1-0:10+1"
+        ],
+        [
+          "result2.xlsx exists",
+          true,
+          "/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/output/result2.xlsx"
+        ],
+        [
+          "result2.xlsx/计划购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result2.xlsx/计划购电量 shape (335, 147)",
+          true,
+          "actual (335, 147)"
+        ],
+        [
+          "result2.xlsx/充放电量 present",
+          true,
+          ""
+        ],
+        [
+          "result2.xlsx/充放电量 shape (2005, 6)",
+          true,
+          "actual (2005, 6)"
+        ],
+        [
+          "result2.xlsx/紧急购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result2.xlsx/计划购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result2.xlsx/充放电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result2.xlsx/紧急购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result2.xlsx dates are serial numbers",
+          true,
+          "45689.0 .. 46022.0 (expect 45689 .. 46022)"
+        ],
+        [
+          "result3.xlsx exists",
+          true,
+          "/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/output/result3.xlsx"
+        ],
+        [
+          "result3.xlsx/计划购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/计划购电量 shape (335, 147)",
+          true,
+          "actual (335, 147)"
+        ],
+        [
+          "result3.xlsx/调整购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/调整购电量 shape (335, 147)",
+          true,
+          "actual (335, 147)"
+        ],
+        [
+          "result3.xlsx/充放电量 present",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/充放电量 shape (2005, 6)",
+          true,
+          "actual (2005, 6)"
+        ],
+        [
+          "result3.xlsx/紧急购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/计划购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/调整购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/充放电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx/紧急购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result3.xlsx dates are serial numbers",
+          true,
+          "45689.0 .. 46022.0 (expect 45689 .. 46022)"
+        ],
+        [
+          "result4-2.xlsx exists",
+          true,
+          "/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/output/result4-2.xlsx"
+        ],
+        [
+          "result4-2.xlsx/计划购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-2.xlsx/计划购电量 shape (335, 147)",
+          true,
+          "actual (335, 147)"
+        ],
+        [
+          "result4-2.xlsx/充放电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-2.xlsx/充放电量 shape (2005, 6)",
+          true,
+          "actual (2005, 6)"
+        ],
+        [
+          "result4-2.xlsx/紧急购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-2.xlsx/计划购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-2.xlsx/充放电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-2.xlsx/紧急购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-2.xlsx dates are serial numbers",
+          true,
+          "45689.0 .. 46022.0 (expect 45689 .. 46022)"
+        ],
+        [
+          "result4-3.xlsx exists",
+          true,
+          "/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/output/result4-3.xlsx"
+        ],
+        [
+          "result4-3.xlsx/计划购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/计划购电量 shape (335, 147)",
+          true,
+          "actual (335, 147)"
+        ],
+        [
+          "result4-3.xlsx/调整购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/调整购电量 shape (335, 147)",
+          true,
+          "actual (335, 147)"
+        ],
+        [
+          "result4-3.xlsx/充放电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/充放电量 shape (2005, 6)",
+          true,
+          "actual (2005, 6)"
+        ],
+        [
+          "result4-3.xlsx/紧急购电量 present",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/计划购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/调整购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/充放电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx/紧急购电量 header identical to template",
+          true,
+          ""
+        ],
+        [
+          "result4-3.xlsx dates are serial numbers",
+          true,
+          "45689.0 .. 46022.0 (expect 45689 .. 46022)"
+        ],
+        [
+          "result1 0:00 SoC = 24:00 SoC = 6000",
+          true,
+          "6000.0, 6000.0"
+        ],
+        [
+          "result2.xlsx 全天购电费用当天电价行计算",
+          true,
+          "0 行不符（逐行核对 334 天）"
+        ],
+        [
+          "result3.xlsx 全天购电费用当天电价行计算",
+          true,
+          "0 行不符（逐行核对 334 天）"
+        ],
+        [
+          "result4-2.xlsx 全天购电费用当天电价行计算",
+          true,
+          "0 行不符（逐行核对 334 天）"
+        ],
+        [
+          "result4-3.xlsx 全天购电费用当天电价行计算",
+          true,
+          "0 行不符（逐行核对 334 天）"
+        ],
+        [
+          "CAPTIONS_3 figure set present (Fig01-Fig25, vector PDF only)",
+          true,
+          "25 of 25 Fig*.pdf"
+        ],
+        [
+          "figure captions and index written",
+          true,
+          "CAPTIONS.md + captions3_index.json (25 entries)"
+        ],
+        [
+          "figure data provenance bundle present",
+          true,
+          "figures/science_data.json"
+        ],
+        [
+          "legacy figure set backed up (rollback available)",
+          true,
+          "35 legacy PDFs"
+        ],
+        [
+          "degradation model self-test artefacts",
+          true,
+          "results/paper_fig_data.json（含雨流 SOH 结果）"
+        ],
+        [
+          "sensitivity grids cached",
+          true,
+          "results/sensitivity_grids.json"
+        ],
+        [
+          "compute benchmarks cached",
+          true,
+          "results/compute_benchmarks.json"
+        ],
+        [
+          "paper tables generated",
+          true,
+          "paper/表1-表4.md"
+        ],
+        [
+          "information-set discipline (no same-day actuals in the 0:00 plan)",
+          true,
+          "plans built from causal windows only (ts_light.history_slice)"
+        ],
+        [
+          "oracle results labelled as bounds",
+          true,
+          "S5 / oracle_bound are reported as bounds only, never as strategies"
+        ],
+        [
+          "unused highlights registered",
+          true,
+          "see results/candidate_methods.json"
+        ]
+      ],
+      "pass": true
+    },
+    {
+      "gate": "G9",
+      "title": "不确定项：PDF 优先 + 共形区间",
+      "checks": [
+        [
+          "PDF audit document present",
+          true,
+          "不确定项与C题.pdf核对.md"
+        ],
+        [
+          "all five open items carry ranges",
+          true,
+          "q2_plan_band, q2_storage_flex, q3_load_band, q4_price_band, table1_mapping"
+        ],
+        [
+          "U1 band includes the main two-stage value",
+          true,
+          "[17469237.65754779, 28594610.346608974]"
+        ],
+        [
+          "U2 point estimate reproduces result3 settlement",
+          true,
+          "14705624.88 vs 14705624.88"
+        ],
+        [
+          "U3 point estimates reproduce result4-2 / 4-3",
+          true,
+          "17727459.43 / 15384235.06"
+        ],
+        [
+          "U4 slot-mapping ambiguity quantified",
+          true,
+          "max diff 105.09 kWh"
+        ],
+        [
+          "ranges never replace the result workbooks",
+          true,
+          "five workbooks remain the main deliverable"
+        ],
+        [
+          "uncertainty figures present",
+          true,
+          "Fig09_aci_fan_lower_bound.pdf + Fig11_coverage_calibration.pdf"
+        ]
+      ],
+      "pass": true
+    }
+  ],
+  "all_pass": true,
+  "sensitivity": {
+    "q1": {
+      "price_x0.9": 31614.253730360666,
+      "price_x1.0": 35126.94858928963,
+      "price_x1.1": 38639.6434482186,
+      "power_x0.9": 35156.499952902836,
+      "power_x1.0": 35126.94858928963,
+      "power_x1.1": 35103.85181341476,
+      "eta_0.85": 36603.406480027064,
+      "eta_0.90": 35126.94858928963,
+      "eta_0.95": 33767.03262075281,
+      "baseline": 35126.94858928963
+    },
+    "q3_settlement": {
+      "over0.5_under1.5": 14705624.884842282,
+      "over0.5_under1.2": 14028759.34187571,
+      "over0.5_under1.8": 15382490.427808855,
+      "over0.3_under1.5": 14699514.293514194
+    }
+  }
+}

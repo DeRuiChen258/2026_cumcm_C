@@ -1,0 +1,15 @@
+{
+  "figures": [
+    "fig0_architecture.png",
+    "fig1_q1_dispatch.png",
+    "fig2_q1_dp_convergence.png",
+    "fig3_night_cleaning.png",
+    "fig4_q2_emergency.png",
+    "fig5_q2_coverage_cost.png",
+    "fig6_q3_subsets.png",
+    "fig7_q3_soc_uri.png",
+    "fig8_q4_pareto_spike.png",
+    "fig9_annual_costs.png",
+    "fig10_conformal_bands.png"
+  ]
+}

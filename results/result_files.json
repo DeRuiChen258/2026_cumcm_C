@@ -1,0 +1,293 @@
+{
+  "files": [
+    {
+      "file": "result1.xlsx",
+      "sheets": {
+        "计划购电量": 145,
+        "充放电量": 7
+      }
+    },
+    {
+      "file": "result2.xlsx",
+      "rows": {
+        "计划购电量": 335,
+        "充放电量": 2005,
+        "紧急购电量": 2602
+      },
+      "summary": {
+        "tag": "q2",
+        "model": "two-stage stochastic LP (newsvendor structure, p*=0.80)",
+        "days": 334,
+        "total_cost_cny": 17469237.65754779,
+        "total_emergency_cost_cny": 1414227.2276101848,
+        "total_emergency_energy_kwh": 363622.64635205094,
+        "total_purchase_kwh": 25843313.811103348,
+        "emergency_slot_rate": 0.18616932801064537,
+        "emergency_purchase_share": 0.013875053535630141,
+        "days_with_emergency": 247,
+        "avg_emergency_blocks_per_day": 7.526946107784431,
+        "controls_total_cost_cny": {
+          "C1_no_margin": 24913778.12159939,
+          "C2_analytic_newsvendor": 18534378.22392734,
+          "oracle_bound": 12245382.217436612,
+          "C3_terminal_value": 15999584.113266371,
+          "C3_terminal_value_cycle_expected": 16909040.506599702
+        },
+        "quantile_coverage": 0.7702511643379908,
+        "quantile_coverage_nominal": 0.8,
+        "quantile_miss_rate": 0.22974883566200932,
+        "aci_gamma": 0.02,
+        "aci_final_alpha": 0.001277777777777384,
+        "maxent": {
+          "order": 4,
+          "days_fitted": 334,
+          "max_gradient_inf": 1.2291335588182184e-05,
+          "min_hessian_eig": 0.00010156066430216214,
+          "median_upper_magnitude_kw": 109.39303919905466,
+          "max_upper_magnitude_kw": 2237.8280867601034,
+          "mean_pv_lower_kwh": 48687.08594027557,
+          "role": "analytic tail shape; block bootstrap keeps temporal dependence"
+        },
+        "cvar_beta": 0.0,
+        "soft_penalty": 0.0,
+        "aci_path_identity": {
+          "gamma": 0.02,
+          "bound": 0.29910179640718565,
+          "note": "|mean(I) - alpha*| <= (|alpha_1 - alpha_T| + range)/ (T*gamma)"
+        }
+      }
+    },
+    {
+      "file": "result3.xlsx",
+      "rows": {
+        "计划购电量": 335,
+        "调整购电量": 335,
+        "充放电量": 2005,
+        "紧急购电量": 1131
+      },
+      "summary": {
+        "tag": "q3",
+        "model": "4-vintage rolling MPC, plan layer p*=0.25 / adjust layer p*=0.70",
+        "days": 334,
+        "total_cost_cny": 14705624.884842282,
+        "total_emergency_energy_kwh": 79350.76801666665,
+        "total_emergency_cost_cny": 270629.93469366664,
+        "total_over_plan_penalty_cny": 15276.478320219629,
+        "total_under_plan_penalty_cny": 3384327.7148328624,
+        "subset_total_cost_cny": {
+          "S0": 21289146.323372684,
+          "S1": 15159618.683719018,
+          "S2": 14696300.892749345,
+          "S3": 14705624.884842288,
+          "S4": 17059426.951153845,
+          "S5": 12245382.217436617
+        },
+        "emergency_slot_rate": 0.07202262142381903,
+        "days_with_emergency": 321,
+        "avg_emergency_blocks_per_day": 3.344311377245509,
+        "aci_final_alpha_plan": 0.999,
+        "aci_final_alpha_adjust": 0.001,
+        "soft_penalty": 0.0,
+        "subset_marginal_value_cny": {
+          "value_of_0600": 6129527.639653666,
+          "value_of_1200": 463317.79096967354,
+          "value_of_1800": -9323.992092942819,
+          "value_of_all_adjustments": 6583521.438530397,
+          "oracle_gap": 2460242.6674056705,
+          "value_of_1200_1800_only": 4229719.37221884
+        },
+        "subset_value_split_cny": {
+          "night_core": {
+            "S0->S1": -166140.93908666263,
+            "S1->S2": 17602.211081555834,
+            "S2->S3": -9327.842768926668
+          },
+          "daylight": {
+            "S0->S1": 6295668.578740318,
+            "S1->S2": 445715.5798881317,
+            "S2->S3": 3.850675982505627
+          }
+        },
+        "nav_gate": {
+          "stages_evaluated": 1002,
+          "stages_accepted": 680,
+          "stages_rejected": 322,
+          "total_nav_cny": 6583521.438530395,
+          "total_accepted_nav_cny": 6647571.312260221,
+          "note": "NAV_k = J_keep - J_reopt on the remaining horizon; oracle stays a bound"
+        },
+        "lead_time_envelope": {
+          "vintages": {
+            "0": {
+              "median_sigma_kw": 0.0,
+              "max_sigma_kw": 727.5166594819283,
+              "slots": 144
+            },
+            "6": {
+              "median_sigma_kw": 44.78046507779541,
+              "max_sigma_kw": 535.1316540130226,
+              "slots": 108
+            },
+            "12": {
+              "median_sigma_kw": 0.0,
+              "max_sigma_kw": 321.5499205050159,
+              "slots": 72
+            },
+            "18": {
+              "median_sigma_kw": 0.0,
+              "max_sigma_kw": 0.0,
+              "slots": 36
+            }
+          },
+          "note": "sigma grows with lead time h; new vintage resets h to zero"
+        },
+        "no_adjustment_band": {
+          "mean_in_band_slots": 144.0,
+          "mean_out_of_band_slots": 0.0,
+          "band": "[-0.5 p_t, 1.5 p_t] (endogenous, settlement-derived)"
+        }
+      }
+    },
+    {
+      "file": "result4-2.xlsx",
+      "rows": {
+        "计划购电量": 335,
+        "充放电量": 2005,
+        "紧急购电量": 2591
+      },
+      "summary": {
+        "tag": "q4_2",
+        "model": "two-stage stochastic LP (newsvendor structure, p*=0.80)",
+        "days": 334,
+        "total_cost_cny": 17727459.43166564,
+        "total_emergency_cost_cny": 1613460.2288690158,
+        "total_emergency_energy_kwh": 360039.2309494392,
+        "total_purchase_kwh": 25913358.124456912,
+        "emergency_slot_rate": 0.18477628077178973,
+        "emergency_purchase_share": 0.013703565857095102,
+        "days_with_emergency": 247,
+        "avg_emergency_blocks_per_day": 7.494011976047904,
+        "controls_total_cost_cny": {
+          "C1_no_margin": 26272189.457593,
+          "C2_analytic_newsvendor": 18841708.55973476,
+          "oracle_bound": 12830833.049898002,
+          "C3_terminal_value": 16096414.532721035,
+          "C3_terminal_value_cycle_expected": 16983703.143435784
+        },
+        "quantile_coverage": 0.7677353626081171,
+        "quantile_coverage_nominal": 0.8,
+        "quantile_miss_rate": 0.23226463739188288,
+        "aci_gamma": 0.02,
+        "aci_final_alpha": 0.001,
+        "maxent": {
+          "order": 4,
+          "days_fitted": 334,
+          "max_gradient_inf": 1.2291335588182184e-05,
+          "min_hessian_eig": 0.00010156066430216214,
+          "median_upper_magnitude_kw": 113.87629756117232,
+          "max_upper_magnitude_kw": 2295.401542287675,
+          "mean_pv_lower_kwh": 47986.96843950657,
+          "role": "analytic tail shape; block bootstrap keeps temporal dependence"
+        },
+        "cvar_beta": 0.0,
+        "soft_penalty": 0.0,
+        "aci_path_identity": {
+          "gamma": 0.02,
+          "bound": 0.29910179640718565,
+          "note": "|mean(I) - alpha*| <= (|alpha_1 - alpha_T| + range)/ (T*gamma)"
+        }
+      }
+    },
+    {
+      "file": "result4-3.xlsx",
+      "rows": {
+        "计划购电量": 335,
+        "调整购电量": 335,
+        "充放电量": 2005,
+        "紧急购电量": 1080
+      },
+      "summary": {
+        "tag": "q4_3",
+        "model": "4-vintage rolling MPC, plan layer p*=0.25 / adjust layer p*=0.70",
+        "days": 334,
+        "total_cost_cny": 15384235.06210229,
+        "total_emergency_energy_kwh": 75761.01855,
+        "total_emergency_cost_cny": 259290.0164662333,
+        "total_over_plan_penalty_cny": 6959.486856687357,
+        "total_under_plan_penalty_cny": 3607774.091610651,
+        "subset_total_cost_cny": {
+          "S0": 22062470.64992121,
+          "S1": 15852476.011902584,
+          "S2": 15384239.109687299,
+          "S3": 15384235.062102288,
+          "S4": 17863341.551417578,
+          "S5": 12830833.049898015
+        },
+        "emergency_slot_rate": 0.06909098469727211,
+        "days_with_emergency": 321,
+        "avg_emergency_blocks_per_day": 3.191616766467066,
+        "aci_final_alpha_plan": 0.999,
+        "aci_final_alpha_adjust": 0.001,
+        "soft_penalty": 0.0,
+        "subset_marginal_value_cny": {
+          "value_of_0600": 6209994.638018625,
+          "value_of_1200": 468236.9022152852,
+          "value_of_1800": 4.0475850105285645,
+          "value_of_all_adjustments": 6678235.587818921,
+          "oracle_gap": 2553402.0122042727,
+          "value_of_1200_1800_only": 4199129.098503631
+        },
+        "subset_value_split_cny": {
+          "night_core": {
+            "S0->S1": -119949.13715895859,
+            "S1->S2": 563.8421293308288,
+            "S2->S3": 0.5593042199957026
+          },
+          "daylight": {
+            "S0->S1": 6329943.775177583,
+            "S1->S2": 467673.06008595263,
+            "S2->S3": 3.4882807883343983
+          }
+        },
+        "nav_gate": {
+          "stages_evaluated": 1002,
+          "stages_accepted": 648,
+          "stages_rejected": 354,
+          "total_nav_cny": 6678235.587818914,
+          "total_accepted_nav_cny": 6717974.816290288,
+          "note": "NAV_k = J_keep - J_reopt on the remaining horizon; oracle stays a bound"
+        },
+        "lead_time_envelope": {
+          "vintages": {
+            "0": {
+              "median_sigma_kw": 0.0,
+              "max_sigma_kw": 727.5166594819283,
+              "slots": 144
+            },
+            "6": {
+              "median_sigma_kw": 44.78046507779541,
+              "max_sigma_kw": 535.1316540130226,
+              "slots": 108
+            },
+            "12": {
+              "median_sigma_kw": 0.0,
+              "max_sigma_kw": 321.5499205050159,
+              "slots": 72
+            },
+            "18": {
+              "median_sigma_kw": 0.0,
+              "max_sigma_kw": 0.0,
+              "slots": 36
+            }
+          },
+          "note": "sigma grows with lead time h; new vintage resets h to zero"
+        },
+        "no_adjustment_band": {
+          "mean_in_band_slots": 144.0,
+          "mean_out_of_band_slots": 0.0,
+          "band": "[-0.5 p_t, 1.5 p_t] (endogenous, settlement-derived)"
+        }
+      }
+    }
+  ]
+}

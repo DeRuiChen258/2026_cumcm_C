@@ -1,0 +1,66 @@
+{
+  "files": {
+    "results/q1.json": {
+      "before": "076b80c9f58f660a0ef0c8d6ae4b997950e75acd34cc564d0207573a9eba4bb4",
+      "after": "076b80c9f58f660a0ef0c8d6ae4b997950e75acd34cc564d0207573a9eba4bb4",
+      "identical": true
+    },
+    "results/q2.json": {
+      "before": "2cbdd4ae63603b0e7829c80a2e0354b04b3357ddedf8ec4db64dab32e8ba0831",
+      "after": "2cbdd4ae63603b0e7829c80a2e0354b04b3357ddedf8ec4db64dab32e8ba0831",
+      "identical": true
+    },
+    "results/q3.json": {
+      "before": "65ec62d853789256870e0a4688a3d2180695157d786c865f70ebbc5c4fe0d1a9",
+      "after": "65ec62d853789256870e0a4688a3d2180695157d786c865f70ebbc5c4fe0d1a9",
+      "identical": true
+    },
+    "results/arrays/q2_q_plan.npy": {
+      "before": "34a5bdf49dabec74be669ab5f015c261342988d41b02f800c7ce219c0b53ec82",
+      "after": "34a5bdf49dabec74be669ab5f015c261342988d41b02f800c7ce219c0b53ec82",
+      "identical": true
+    },
+    "results/arrays/q3_q_adjust.npy": {
+      "before": "0a482ad92d6a684b21becf847597c32c1b91dde0c93c0e3bcf23b8ce7390163b",
+      "after": "0a482ad92d6a684b21becf847597c32c1b91dde0c93c0e3bcf23b8ce7390163b",
+      "identical": true
+    },
+    "output/result1.xlsx": {
+      "before": "7d26083781d2c70d949550508249d171276282ce22fbf456f41f7641026cad4d",
+      "after": "7d26083781d2c70d949550508249d171276282ce22fbf456f41f7641026cad4d",
+      "identical": true
+    },
+    "output/result2.xlsx": {
+      "before": "7792d495c4f98f349b31c1164cb3db2aa33def1ae322de063d90b0c2da955620",
+      "after": "7792d495c4f98f349b31c1164cb3db2aa33def1ae322de063d90b0c2da955620",
+      "identical": true
+    },
+    "output/result3.xlsx": {
+      "before": "84b4766a3618ec8fb67eda55de127833d235d5ea7e28990889a3d7a4c26b8aa3",
+      "after": "84b4766a3618ec8fb67eda55de127833d235d5ea7e28990889a3d7a4c26b8aa3",
+      "identical": true
+    },
+    "results/q4.json": {
+      "before": "e34082bc3356abc9c98b364535662248f3c4d713bc6581f4cf67f08f8215ddaf",
+      "after": "e34082bc3356abc9c98b364535662248f3c4d713bc6581f4cf67f08f8215ddaf",
+      "identical": true
+    },
+    "results/arrays/q4_2_charge.npy": {
+      "before": "2328b1c51f449a5ced3665f23138199551c1b5d7a73dfff317095c3d625d6232",
+      "after": "2328b1c51f449a5ced3665f23138199551c1b5d7a73dfff317095c3d625d6232",
+      "identical": true
+    },
+    "output/result4-2.xlsx": {
+      "before": "b9a385abfaf5e54e91280ea0bce27918316a1deb33de1e3c27cb2920707dd15a",
+      "after": "b9a385abfaf5e54e91280ea0bce27918316a1deb33de1e3c27cb2920707dd15a",
+      "identical": true
+    },
+    "output/result4-3.xlsx": {
+      "before": "3fd6268f2ddc29be503096a09997bafced10582c69b56ea6398d7d3edf77d490",
+      "after": "3fd6268f2ddc29be503096a09997bafced10582c69b56ea6398d7d3edf77d490",
+      "identical": true
+    }
+  },
+  "all_identical": true,
+  "note": "second run of Q1/Q2/Q3 + workbook writer on identical inputs"
+}

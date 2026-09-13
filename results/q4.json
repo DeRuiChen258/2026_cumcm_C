@@ -1,0 +1,337 @@
+{
+  "q4_2": {
+    "tag": "q4_2",
+    "model": "two-stage stochastic LP (newsvendor structure, p*=0.80)",
+    "days": 334,
+    "total_cost_cny": 17727459.43166564,
+    "total_emergency_cost_cny": 1613460.2288690158,
+    "total_emergency_energy_kwh": 360039.2309494392,
+    "total_purchase_kwh": 25913358.124456912,
+    "emergency_slot_rate": 0.18477628077178973,
+    "emergency_purchase_share": 0.013703565857095102,
+    "days_with_emergency": 247,
+    "avg_emergency_blocks_per_day": 7.494011976047904,
+    "controls_total_cost_cny": {
+      "C1_no_margin": 26272189.457593,
+      "C2_analytic_newsvendor": 18841708.55973476,
+      "oracle_bound": 12830833.049898002,
+      "C3_terminal_value": 16096414.532721035,
+      "C3_terminal_value_cycle_expected": 16983703.143435784
+    },
+    "quantile_coverage": 0.7677353626081171,
+    "quantile_coverage_nominal": 0.8,
+    "quantile_miss_rate": 0.23226463739188288,
+    "aci_gamma": 0.02,
+    "aci_final_alpha": 0.001,
+    "maxent": {
+      "order": 4,
+      "days_fitted": 334,
+      "max_gradient_inf": 1.2291335588182184e-05,
+      "min_hessian_eig": 0.00010156066430216214,
+      "median_upper_magnitude_kw": 113.87629756117232,
+      "max_upper_magnitude_kw": 2295.401542287675,
+      "mean_pv_lower_kwh": 47986.96843950657,
+      "role": "analytic tail shape; block bootstrap keeps temporal dependence"
+    },
+    "cvar_beta": 0.0,
+    "soft_penalty": 0.0,
+    "aci_path_identity": {
+      "gamma": 0.02,
+      "bound": 0.29910179640718565,
+      "note": "|mean(I) - alpha*| <= (|alpha_1 - alpha_T| + range)/ (T*gamma)"
+    }
+  },
+  "q4_3": {
+    "tag": "q4_3",
+    "model": "4-vintage rolling MPC, plan layer p*=0.25 / adjust layer p*=0.70",
+    "days": 334,
+    "total_cost_cny": 15384235.06210229,
+    "total_emergency_energy_kwh": 75761.01855,
+    "total_emergency_cost_cny": 259290.0164662333,
+    "total_over_plan_penalty_cny": 6959.486856687357,
+    "total_under_plan_penalty_cny": 3607774.091610651,
+    "subset_total_cost_cny": {
+      "S0": 22062470.64992121,
+      "S1": 15852476.011902584,
+      "S2": 15384239.109687299,
+      "S3": 15384235.062102288,
+      "S4": 17863341.551417578,
+      "S5": 12830833.049898015
+    },
+    "emergency_slot_rate": 0.06909098469727211,
+    "days_with_emergency": 321,
+    "avg_emergency_blocks_per_day": 3.191616766467066,
+    "aci_final_alpha_plan": 0.999,
+    "aci_final_alpha_adjust": 0.001,
+    "soft_penalty": 0.0,
+    "subset_marginal_value_cny": {
+      "value_of_0600": 6209994.638018625,
+      "value_of_1200": 468236.9022152852,
+      "value_of_1800": 4.0475850105285645,
+      "value_of_all_adjustments": 6678235.587818921,
+      "oracle_gap": 2553402.0122042727,
+      "value_of_1200_1800_only": 4199129.098503631
+    },
+    "subset_value_split_cny": {
+      "night_core": {
+        "S0->S1": -119949.13715895859,
+        "S1->S2": 563.8421293308288,
+        "S2->S3": 0.5593042199957026
+      },
+      "daylight": {
+        "S0->S1": 6329943.775177583,
+        "S1->S2": 467673.06008595263,
+        "S2->S3": 3.4882807883343983
+      }
+    },
+    "nav_gate": {
+      "stages_evaluated": 1002,
+      "stages_accepted": 648,
+      "stages_rejected": 354,
+      "total_nav_cny": 6678235.587818914,
+      "total_accepted_nav_cny": 6717974.816290288,
+      "note": "NAV_k = J_keep - J_reopt on the remaining horizon; oracle stays a bound"
+    },
+    "lead_time_envelope": {
+      "vintages": {
+        "0": {
+          "median_sigma_kw": 0.0,
+          "max_sigma_kw": 727.5166594819283,
+          "slots": 144
+        },
+        "6": {
+          "median_sigma_kw": 44.78046507779541,
+          "max_sigma_kw": 535.1316540130226,
+          "slots": 108
+        },
+        "12": {
+          "median_sigma_kw": 0.0,
+          "max_sigma_kw": 321.5499205050159,
+          "slots": 72
+        },
+        "18": {
+          "median_sigma_kw": 0.0,
+          "max_sigma_kw": 0.0,
+          "slots": 36
+        }
+      },
+      "note": "sigma grows with lead time h; new vintage resets h to zero"
+    },
+    "no_adjustment_band": {
+      "mean_in_band_slots": 144.0,
+      "mean_out_of_band_slots": 0.0,
+      "band": "[-0.5 p_t, 1.5 p_t] (endogenous, settlement-derived)"
+    }
+  },
+  "spike_conformity": {
+    "level": 0.95,
+    "spike_quantile": 0.9,
+    "spike_slots": 5011,
+    "covered_spikes": 4716,
+    "coverage": 0.9411302395209582,
+    "mean_window_width_cny_per_kwh": 0.13811489105123087
+  },
+  "cvar_pareto": [
+    {
+      "beta": 0.0,
+      "realized_cost_cny": 3820136.396992788,
+      "mean_daily_cost_cny": 54573.37709989698,
+      "cvar_90_cny": 89773.78070577576,
+      "emergency_energy_kwh": 93281.872784151,
+      "emergency_cost_cny": 414597.1611584599,
+      "days": 70
+    },
+    {
+      "beta": 0.25,
+      "realized_cost_cny": 3795800.021328965,
+      "mean_daily_cost_cny": 54225.71459041379,
+      "cvar_90_cny": 82391.07972633393,
+      "emergency_energy_kwh": 63687.910934929256,
+      "emergency_cost_cny": 277209.5916472603,
+      "days": 70
+    },
+    {
+      "beta": 0.5,
+      "realized_cost_cny": 3813263.1054495345,
+      "mean_daily_cost_cny": 54475.18722070764,
+      "cvar_90_cny": 80737.13169762546,
+      "emergency_energy_kwh": 50575.79117941032,
+      "emergency_cost_cny": 215876.80708737866,
+      "days": 70
+    },
+    {
+      "beta": 0.75,
+      "realized_cost_cny": 3835120.6957577225,
+      "mean_daily_cost_cny": 54787.438510824606,
+      "cvar_90_cny": 79948.04415129348,
+      "emergency_energy_kwh": 43061.03187012641,
+      "emergency_cost_cny": 184587.3704109468,
+      "days": 70
+    },
+    {
+      "beta": 0.9,
+      "realized_cost_cny": 3838803.4662550976,
+      "mean_daily_cost_cny": 54840.04951792997,
+      "cvar_90_cny": 79809.96806499177,
+      "emergency_energy_kwh": 41719.39171061195,
+      "emergency_cost_cny": 178377.42677715328,
+      "days": 70
+    }
+  ],
+  "copula_value": {
+    "days": 70,
+    "copula_cost_cny": 3830836.272770947,
+    "independent_cost_cny": 3830915.6257910086,
+    "difference_cny": 79.35302006173879,
+    "scenarios": 20,
+    "note": "negative difference means the independent pairing under-estimates the cost"
+  },
+  "student_t_copula": {
+    "available": true,
+    "df": 7.0,
+    "df_grid": [
+      2.5,
+      3.0,
+      4.0,
+      5.0,
+      7.0,
+      10.0,
+      15.0,
+      25.0,
+      40.0
+    ],
+    "neg_loglik_grid": [
+      20370.222447421595,
+      20193.06420809264,
+      19994.555141206536,
+      19902.614538564787,
+      19853.88575549423,
+      19903.131791411928,
+      20061.926070154055,
+      20384.44406906702,
+      20776.17362880811
+    ],
+    "corr_matrix": [
+      [
+        1.0,
+        0.9411640561364228,
+        0.8153129979377537
+      ],
+      [
+        0.9411640561364228,
+        1.0,
+        0.9081970720916853
+      ],
+      [
+        0.8153129979377537,
+        0.9081970720916853,
+        1.0
+      ]
+    ],
+    "corr_load_price": 0.8153129979377537,
+    "corr_pv_price": 0.9081970720916853,
+    "corr_load_pv": 0.9411640561364228,
+    "tail_dependence_load_price": 0.3933189399075323,
+    "paradox_scenarios_removed": 0,
+    "samples": 10080,
+    "note": "Student-t copula keeps tail dependence; Gaussian would set it to zero"
+  },
+  "execution_ablation": {
+    "days": 70,
+    "drift_limit_kwh": 800.0,
+    "A0_full": {
+      "cbf_active_slots": 373,
+      "soc_violation_slots": 0,
+      "triggers": 4778,
+      "holds": 5302,
+      "switches": 2308,
+      "terminal_ok_days": 70,
+      "total_repair_kwh": 47961.6004454885,
+      "mean_repair_kwh_per_day": 685.1657206498356,
+      "hold_rate": 0.5259920634920635,
+      "terminal_contract_violations": 0
+    },
+    "A1_independent_scenarios": {
+      "note": "quantified by copula_value (difference in CNY)"
+    },
+    "A2_no_price_band": {
+      "note": "every 10-min slot is re-optimised; band removal raises the action count without changing safety"
+    },
+    "A3_no_cbf": {
+      "soc_violation_slots": 0,
+      "min_soc_kw": 1200.0,
+      "max_soc_kw": 10800.0,
+      "note": "nominal MPC schedule checked against the hard band"
+    },
+    "A4_periodic_trigger": {
+      "triggers": 4939,
+      "switches": 2500,
+      "hold_rate": 0.0,
+      "decision_points": 10080,
+      "note": "time-driven reference: no event logic"
+    },
+    "dispatch_reduction_vs_periodic": 0.5259920634920635,
+    "drift_limit_sweep": {
+      "300": {
+        "hold_rate": 0.432,
+        "triggers": 5722
+      },
+      "500": {
+        "hold_rate": 0.469,
+        "triggers": 5356
+      },
+      "800": {
+        "hold_rate": 0.529,
+        "triggers": 4744
+      },
+      "1200": {
+        "hold_rate": 0.561,
+        "triggers": 4425
+      },
+      "unbounded": {
+        "hold_rate": 0.726,
+        "triggers": 2759
+      },
+      "note": "70-day sample; larger drift limits cut command traffic but raise the terminal repair distance"
+    }
+  },
+  "soft_penalty_evidence": [
+    {
+      "rho1_multiplier": 0.1,
+      "rho1_cny_per_kwh": 0.17936000000000002,
+      "slack_energy_kwh": 3128642.8336955,
+      "expected_cost_cny": 8669.379554889165,
+      "days": 40
+    },
+    {
+      "rho1_multiplier": 0.3,
+      "rho1_cny_per_kwh": 0.53808,
+      "slack_energy_kwh": 1441513.4071129998,
+      "expected_cost_cny": 717182.571374096,
+      "days": 40
+    },
+    {
+      "rho1_multiplier": 0.5,
+      "rho1_cny_per_kwh": 0.8968,
+      "slack_energy_kwh": 659864.4033701668,
+      "expected_cost_cny": 1261275.1806054807,
+      "days": 40
+    },
+    {
+      "rho1_multiplier": 1.0,
+      "rho1_cny_per_kwh": 1.7936,
+      "slack_energy_kwh": 0.0,
+      "expected_cost_cny": 1989580.2367479515,
+      "days": 40
+    },
+    {
+      "rho1_multiplier": 6.0,
+      "rho1_cny_per_kwh": 10.761600000000001,
+      "slack_energy_kwh": 0.0,
+      "expected_cost_cny": 1989580.2367479515,
+      "days": 40
+    }
+  ],
+  "sample_days": 70,
+  "sample_policy": "every 5th day of 2025-02-01..2025-12-31 + the four target dates"
+}

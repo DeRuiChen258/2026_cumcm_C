@@ -1,0 +1,47 @@
+{
+  "policy": "亮点候选只有同时满足“结构适配 + 真实实现 + 可复现实测证据”才允许写入论文（prompt v1 §0.6）",
+  "candidates": [
+    {
+      "name": "GPU / CUDA 算子加速",
+      "status": "not_enabled",
+      "reason": "全流程单机 CPU 重跑 < 5 分钟（清洗 0.15 s，Q1 0.4 s，Q2 19.3 s，Q3 6.1 s，Q4 约 150 s），热点不在 GPU 收益区间；无实测加速比证据，故不启用",
+      "evidence": "clean/meta.json, results/*.json 的 runtime 记录"
+    },
+    {
+      "name": "异步并行 / 多进程求解",
+      "status": "not_enabled",
+      "reason": "H 单日 LP 规模小（数万非零元），进程调度开销与内存复制成本高于收益；串行总时长已满足 30 分钟门禁",
+      "evidence": "results/verification_report.json 的敏感性运行时间"
+    },
+    {
+      "name": "谐波 + 周周期岭回归预测器",
+      "status": "not_enabled",
+      "reason": "在载荷与光伏上技能评分分别为 -0.144 / -0.447，均劣于同时段均值(profile)基线，因此主模型采用 profile 基线 + 共形校正",
+      "evidence": "results/p2_conformal.json: forecast_skill"
+    },
+    {
+      "name": "残差块 bootstrap 场景生成",
+      "status": "enabled",
+      "reason": "保留时域相关性且无需分布假设；与解析报童对照（C2）同口径比较，费用更低",
+      "evidence": "results/q2.json: summary.controls_total_cost_cny"
+    },
+    {
+      "name": "ACI 自适应共形 + 有限样本修正",
+      "status": "enabled",
+      "reason": "三档分位覆盖率偏差 ≤ 0.6pp（门禁 ≤ 3pp）",
+      "evidence": "results/p2_conformal.json: coverage.anchors"
+    },
+    {
+      "name": "CVaR（Rockafellar-Uryasev）+ 经验 Copula 场景",
+      "status": "enabled",
+      "reason": "尖峰覆盖率 94.1%（门禁 ≥ 90%）；β 扫描给出风险-费用帕累托前沿，尾部 CVaR 下降约 14%",
+      "evidence": "results/q4.json: spike_conformity, cvar_pareto, copula_value"
+    },
+    {
+      "name": "软约束 always-feasible MPC",
+      "status": "enabled_with_condition",
+      "reason": "当 ρ1 ≤ 0.5·max p 时模型用松弛替代紧急购电（659,864 kWh 松弛），故必须取 ρ1 > 5·max p（本项目取 6 倍）",
+      "evidence": "results/q4.json: soft_penalty_evidence"
+    }
+  ]
+}
