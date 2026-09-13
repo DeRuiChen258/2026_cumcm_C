@@ -1,0 +1,177 @@
+{
+  "Fig01_hierarchical_architecture": {
+    "no": 1,
+    "title_cn": "多时间尺度分层能量管理架构",
+    "title_en": "Hierarchical Multi-Time-Scale Energy Management Architecture",
+    "group": "架构",
+    "caption_cn": "三层闭环：日前 Q1 凸图 LP 调度并抽取 KKT 对偶价格；滚动 Q3 依据 MaxEnt-ACI 预测边界做 NAV 再优化；实时 10 分钟 Q4 MT-RRC 在 BESS 上执行 Student-t Copula 场景 → CBF 安全过滤 → DETC 事件触发。箭头标注 g_t^*、λ_t^*、NAV_k、u^safe、u^real。"
+  },
+  "Fig02_value_cascade": {
+    "no": 2,
+    "title_cn": "信息—决策—控制价值递进",
+    "title_en": "Information-Decision-Control Value Cascade",
+    "group": "架构",
+    "caption_cn": "四级价值递进：物理价值（确定性凸图 LP + KKT 影子价格）→ 风险价值（MaxEnt 分布、ACI 自适应共形、报童临界分位）→ 信息价值（Lead-time 收缩、内生无调整带、NAV 再优化）→ 控制价值（MT-RRC、Student-t Copula、CBF 不变集、DETC 事件触发）。"
+  },
+  "Fig03_microgrid_sld": {
+    "no": 3,
+    "title_cn": "微电网物理拓扑单线图",
+    "title_en": "Physical Topology of the Microgrid",
+    "group": "Q1",
+    "caption_cn": "并网工业微电网单线图：交流母线 N_t 汇集光伏 v_t、BESS 内部节点 B_t（充放效率 η_c、η_d）、负荷 l_t 与 PCC 变压器至大电网 g_t；标注功率平衡变量与退化成本 κ_deg。"
+  },
+  "Fig04_pv_inverter_clipping": {
+    "no": 4,
+    "title_cn": "光伏逆变器截断与功率包络",
+    "title_en": "PV Inverter Clipping and Power Envelope",
+    "group": "Q1",
+    "caption_cn": "辐照度—交流出力响应曲线族（不同环境温度），红色虚线标出逆变器功率上限并着色标注截断饱和区。曲线为单二极管模型参数化示意，不替代附件实测功率。"
+  },
+  "Fig05_time_expanded_network": {
+    "no": 5,
+    "title_cn": "时域扩展广义网络流与 SOC 状态转移",
+    "title_en": "Time-Expanded Generalized Network Flow of the BESS",
+    "group": "Q1",
+    "caption_cn": "24 步有向无环广义网络流：节点为母线平衡 N_t 与储能状态 B_t，有向边为充电 c_t（效率 η_c）与放电 d_t（1/η_d），体现凸动态平衡与自放电衰减 γ。"
+  },
+  "Fig06_day_ahead_balance_soc": {
+    "no": 6,
+    "title_cn": "日前能量平衡与 SOC 轨迹",
+    "title_en": "Day-Ahead Energy Balance and SOC Trajectory",
+    "group": "Q1",
+    "caption_cn": "双面板 24 小时（144 个 10 分钟时段聚合为 1 小时）确定性调度：上板为光伏、网购电与放电对负荷与充电的平衡；下板为 SOC 轨迹并标注 [1200, 10800] kWh 边界与 E_T = E_0 = 6000 kWh。"
+  },
+  "Fig07_kkt_dual_deadband": {
+    "no": 7,
+    "title_cn": "KKT 对偶影子价格与储能边际价值",
+    "title_en": "KKT Dual Shadow Price and Marginal Energy Value",
+    "group": "Q1",
+    "caption_cn": "24 小时对偶轨迹：母线影子价格 μ_t 与分时电价 p_t 对比，储能状态边际价值 λ_t 单独成轴；阴影区标出充放电触发区间与无动作死区。注：本数据最优解未落入死区，死区以解析边界呈现。"
+  },
+  "Fig08_maxent_residual_fit": {
+    "no": 8,
+    "title_cn": "预测残差分布与 MaxEnt 拟合",
+    "title_en": "Forecast Residual Distribution and MaxEnt Fit",
+    "group": "Q2",
+    "caption_cn": "净负荷残差直方图上叠加极大熵指数族密度 p*(x) 与同方差正态参照。MaxEnt 由前四阶矩以凸对偶求解，334 个因果窗口的梯度中位数 1.9e-16、最大 1.2e-5。"
+  },
+  "Fig09_aci_fan_lower_bound": {
+    "no": 9,
+    "title_cn": "ACI 共形包络与防守型光伏下界",
+    "title_en": "ACI Conformal Fan and Defensive PV Lower Bound",
+    "group": "Q2",
+    "caption_cn": "代表性日 ACI 共形预测包络；粗红实线为报童 F* = 0.80 对应的物理下界 P_L = max(0, P̂ − r)，夜间严格截断为 0。下界取自 results/arrays/q2_pv_lower.npy。"
+  },
+  "Fig10_lead_time_expansion": {
+    "no": 10,
+    "title_cn": "预测提前量相关的不确定性膨胀",
+    "title_en": "Lead-Time Dependent Uncertainty Expansion",
+    "group": "Q2",
+    "caption_cn": "预测误差尺度随提前量 h 单调扩散的喇叭口曲线，四个发布时次分面；新预报到达时 h 归零、包络收缩。数据取自 results/q3_lead_time.csv（最后一个评估窗口）。"
+  },
+  "Fig11_coverage_calibration": {
+    "no": 11,
+    "title_cn": "覆盖率校准与 ACI 路径恒等式",
+    "title_en": "Coverage Calibration and ACI Path Identity",
+    "group": "Q2",
+    "caption_cn": "左板：名义分位与实际覆盖的对齐曲线（含 y = x 理想线）与 Q2 报童分位扫描；右板：ACI 累积失效率随时间收敛轨迹。三档锚点实测偏差 −0.52 / −0.17 / −0.37 pp。"
+  },
+  "Fig12_newsvendor_pareto": {
+    "no": 12,
+    "title_cn": "5 倍非对称惩罚下的风险—成本前沿",
+    "title_en": "Risk-Cost Pareto under 5x Asymmetric Penalty",
+    "group": "Q2",
+    "caption_cn": "分位 F* 扫描下的期望成本与缺失率权衡；星标为报童最优 F* = 0.80，并给出 5 倍应急惩罚（C_u = 4p, C_o = p）的解析位置。"
+  },
+  "Fig13_tail_penalty_distribution": {
+    "no": 13,
+    "title_cn": "极端惩罚的分布形态（实测日样本）",
+    "title_en": "Tail Penalty Distribution across Realized Days",
+    "group": "Q2",
+    "caption_cn": "三种计划口径（确定性均值、无裕度、报童 p*=0.80 两阶段）在 334 个实测日上的应急购电惩罚分布小提琴图。注：CAPTIONS_3 原要求 1000 次 Monte Carlo，本仓库无合成场景文件，改用全年实测日的经验分布，口径更保守。"
+  },
+  "Fig14_info_funnel_shrinkage": {
+    "no": 14,
+    "title_cn": "多时次信息到达与预测带收缩",
+    "title_en": "Sequential Information Revelation and Band Shrinkage",
+    "group": "Q3",
+    "caption_cn": "0:00/6:00/12:00/18:00 四个信息节点的预测带收缩：新预报到达后提前量归零，不确定性带显著收窄；夜间段因光伏恒零而掩码。"
+  },
+  "Fig15_no_adaptation_zone": {
+    "no": 15,
+    "title_cn": "非对称成本下的内生无调整带",
+    "title_en": "Endogenous No-Adaptation Zone under Asymmetric Cost",
+    "group": "Q3",
+    "caption_cn": "分段线性的契约调整边际成本：下调段 −0.5p_t、上调段 +1.5p_t；次梯度区间 ∂C^adj ∈ [−0.5p_t, 1.5p_t] 内保持契约不变，形成无人工阈值的阻尼带。"
+  },
+  "Fig16_adjustment_policy_regions": {
+    "no": 16,
+    "title_cn": "契约调整决策相图",
+    "title_en": "Contract Adjustment Policy Region Map",
+    "group": "Q3",
+    "caption_cn": "以边际收益 m_t 与实时电价 p_t 为坐标的三分区相图：下调区、无调整死带、上调区，边界由结算系数 0.5 / 1.5 导出。"
+  },
+  "Fig17_curi_vs_nav": {
+    "no": 17,
+    "title_cn": "预测精度增益与净调整价值",
+    "title_en": "Forecast Accuracy Gain (CURI) vs Net Adjustment Value (NAV)",
+    "group": "Q3",
+    "caption_cn": "散点展示预测精度增益 CURI_k = ln(σ_old/σ_new) 与净调整价值 NAV_k 的关系：精度提升并不自动带来正 NAV，需决策阈值过滤。含正 / 负 NAV 分色与零轴参考。"
+  },
+  "Fig18_nav_trigger_timeline": {
+    "no": 18,
+    "title_cn": "事件驱动 NAV 触发轨迹",
+    "title_en": "Event-Driven NAV Trigger Trajectory",
+    "group": "Q3",
+    "caption_cn": "全天脉冲柱状图给出各时次 NAV，虚线为执行阈值；标注采纳（REOPT）与拒绝（KEEP）点位，灰色区块标出夜间掩码时段（19:00–05:00）。"
+  },
+  "Fig19_subset_trajectories": {
+    "no": 19,
+    "title_cn": "S0–S5 子集下的契约与 SOC 轨迹",
+    "title_en": "Contract and SOC Trajectories across Subsets S0-S5",
+    "group": "Q3",
+    "caption_cn": "双面板对比 S0（仅 0:00）、S3（四时次）、S4（12:00+18:00）、S5（完美预报界）：上板为购电契约演化，下板为储能 SOC 参考轨迹。S5 仅作上界。"
+  },
+  "Fig20_mtrrc_layers": {
+    "no": 20,
+    "title_cn": "MT-RRC 分层控制与跨尺度映射",
+    "title_en": "MT-RRC Hierarchical Control and Time-Scale Mapping",
+    "group": "Q4",
+    "caption_cn": "1 小时 → 10 分钟映射：日前契约 g_t^final 与参考 S_t^ref 经接口层展开为 P_τ^contract 与 S_τ^ref，依次经 Student-t Copula 场景层、软 MPC 决策层、CBF 安全层与 DETC 执行层。"
+  },
+  "Fig21_student_t_copula": {
+    "no": 21,
+    "title_cn": "Student-t Copula 高频联合风险场景",
+    "title_en": "Student-t Copula Joint High-Frequency Risk Scenarios",
+    "group": "Q4",
+    "caption_cn": "三维散点给出（光伏残差、负荷残差、电价残差）联合场景，红色标出尾部共现簇（低光伏 + 高负荷 + 电价尖峰）。拟合自由度 ν = 7，负荷—价格尾部相关系数 0.393。"
+  },
+  "Fig22_cbf_phase_space": {
+    "no": 22,
+    "title_cn": "CBF 相空间安全过滤",
+    "title_en": "CBF Phase-Space Safety Filtering",
+    "group": "Q4",
+    "caption_cn": "（储能电量 E_τ, 控制量 u_τ）相平面：阴影为满足 ḣ + γh ≥ 0 的安全不变集；箭头示意名义 MPC 指令被二次规划投影回安全域的拉回效应。"
+  },
+  "Fig23_detc_threshold_evolution": {
+    "no": 23,
+    "title_cn": "DETC 执行与动态阈值演化",
+    "title_en": "DETC Execution and Dynamic Threshold Evolution",
+    "group": "Q4",
+    "caption_cn": "双面板 144 步：上板为跟踪误差平方与动态阈值对比，脉冲标记实际下发时刻；下板为 BESS 实际功率阶梯，显示 Hold 期休眠与切换次数下降。"
+  },
+  "Fig24_ablation_map": {
+    "no": 24,
+    "title_cn": "成本—开关—安全多目标消融",
+    "title_en": "Cost-Switching-Safety Multi-Objective Ablation (A0-A4)",
+    "group": "Q4",
+    "caption_cn": "气泡散点：横轴为 PCS 动作次数、纵轴为运行成本、气泡面积代表 SOC 越界深度。A0 全功能、A3 无 CBF（越界风险）、A4 周期触发（动作数最高）；A1/A2 为概念对照。"
+  },
+  "Fig25_architecture_parallel_coordinates": {
+    "no": 25,
+    "title_cn": "系统级架构性能包络",
+    "title_en": "System-Level Performance Envelope across Architectures",
+    "group": "总结",
+    "caption_cn": "平行坐标：确定性基准、+MaxEnt-ACI、+NAV 信息价值、+MT-RRC 高频软 MPC、+CBF-DETC 闭环在成本、应急电费、CVaR、弃光、退化与开关次数六个归一化指标上的包络。注：M1–M4 为按实测指标构造的递进配置，非独立重复实验。"
+  }
+}
