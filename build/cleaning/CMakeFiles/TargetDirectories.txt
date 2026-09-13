@@ -1,0 +1,3 @@
+/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/build/cleaning/CMakeFiles/cleaning_cpp.dir
+/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/build/cleaning/CMakeFiles/edit_cache.dir
+/home/violet/Workspace/Code/Competition_code/Math/2026_cumcm/build/cleaning/CMakeFiles/rebuild_cache.dir
