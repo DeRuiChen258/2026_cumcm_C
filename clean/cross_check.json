@@ -1,0 +1,13 @@
+{
+  "att2_core_night_cells": 25895,
+  "att2_core_night_zero_raw": 23316,
+  "att2_core_night_zero_after": 25766,
+  "att2_core_night_over_5kw_raw": 129,
+  "att2_daytime_0800_1600_zeros": 0,
+  "quarantine_records": 129,
+  "audit_records": 6229,
+  "att1_small_pv_cells_0_5kw": 6,
+  "att4_near_zero_price_cells": 28,
+  "night_load_flag_records": 314,
+  "nr4_shoulder_hits": 8
+}

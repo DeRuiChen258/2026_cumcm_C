@@ -1,0 +1,7 @@
+{
+  "command": "cleaning_cpp clean --in Data --out clean",
+  "wall_seconds": 0.158845,
+  "peak_rss_kb": 48712,
+  "rules": "NR1..NR12 (prompt v1 4.3)",
+  "params": {"noise_kw": 5, "shoulder_kw": 1, "theta_rel": 0.01, "theta_abs": 1, "window_jump_slots": 3, "interp_max_gap": 6}
+}

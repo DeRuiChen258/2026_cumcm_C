@@ -1,0 +1,40 @@
+{
+  "producer": "code/cleaning_cpp (C++17, zlib+tinyxml2)",
+  "contract": "prompt v1: C++ performs all value-level cleaning; Python is read-only",
+  "rows": 365,
+  "cols": 144,
+  "forecast_shape": [365, 4, 24],
+  "day1_shape": [144, 3],
+  "dtype": "<f8",
+  "missing_policy": "NaN (never 0)",
+  "time_convention": "slot k (1..144) <-> right endpoint 10k minutes <-> attachment column k+1",
+  "audit_records": 6229,
+  "quarantine_records": 129,
+  "sigma_floor_kw": 51.081,
+  "wall_seconds": 0.158845,
+  "peak_rss_kb": 48712,
+  "inputs_sha256": {
+    "附件1.xlsx": "66b87134f5ecccd68184d3539bb1293ef039f9e0fdd955a589b9bfa7f227c377",
+    "附件2.xlsx": "2e95fd446bfafa0d8c59577b5c2e2ea8b3f1def20dde54a3062556f4da9b4c72",
+    "附件3.xlsx": "8a61b06c52bd0d639a1cc37c61a7d9f5b75edcbca718f64c1bd3498ec9f9d843",
+    "附件4.xlsx": "20e9c93aeab5e8e21ae4dd15587f9e190f7408692504c1319598461cd654fe71"
+  },
+  "outputs_sha256": {
+    "cleaning_audit.csv": "ad24adf832db9a1cfee4be5581004e3716c48fa1f02c0d4a3f7f0ca5b615f47a",
+    "dates.json": "76e1e83db0ee2c66258491e97a37c23fb4af35fd1e08bb45b5cfbb339cc06125",
+    "day1.npy": "d973d82dc2c7ce01793350928b7b914762608de5dce6897644dc9b7f2295b9f2",
+    "day_windows.csv": "06f203113c6ae98f7c506e971029431d2cc72376dc2ef4c76bfe9f6999a1cde9",
+    "load.npy": "b92d972e7b2464598186d0323d2dc697442da67e8afd434b32345593f035b3e2",
+    "price.npy": "0979518b0eb349c170b499592a531bf1ef154be5d69c8be7c1dd6e6fddc23c11",
+    "pv_actual.npy": "f7a9b1ff3905f94e3c77f5fcb28c25fe3b3a1fc9fd7155c02b3dbf1018c8917e",
+    "pv_actual_raw.npy": "ded518dfa1d674586f34952faa5140c98b4af2c6893bf40e837e52f69c9eb94f",
+    "pv_forecast.npy": "bb33d260882e17f69f90c6af33e4b63e417b42198035749be8a549597c9647c1",
+    "pv_forecast_raw.npy": "3d16841b1a36f5be4bcabd06ee415abae3ebfb354fcb96e8e1973de08475dc63",
+    "quality_report.csv": "66f6e5f2edea3abf8472815c3d64faaa1a2eaa43cc4a05f855ca01607b53ca4d",
+    "quarantine.csv": "2efb327d6e9f1b5cf654bbf01c88e590853120c5c9207b029275dbad1b792f85",
+    "sigma.csv": "856ceb0f1364eaed7bbdf70f36c24647d06c0e2faa631438bb9ef95fd903843d",
+    "slots.json": "e905c7a91cfb4b321842cd958007dba4b1b67a2a86c13f22e8fa58db4014b8cf",
+    "template_schema.json": "52d7617dbfcd0617d93eec9ba22f445fe138952d8de6a9c992c520399093f17a",
+    "window_monthly.csv": "450b0d7558d1889bf944425419178a1938de465d64f8be8d81563458e99fee5a"
+  }
+}

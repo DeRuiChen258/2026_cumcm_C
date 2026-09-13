@@ -1,0 +1,13 @@
+{
+  "all_pass": true,
+  "checks": [
+    {"id": "I1", "description": "core-night PV is exactly 0 (NaN only if quarantined)", "pass": true, "detail": "core_cells=25895 nonzero=0 nan=129"},
+    {"id": "I2", "description": "08:00-16:00 zero-free and positive", "pass": true, "detail": "cells=17885 zeros=0 negatives=0"},
+    {"id": "I3", "description": "365 strictly increasing dates 2025-01-01..2025-12-31", "pass": true, "detail": "first=2025-01-01 last=2025-12-31"},
+    {"id": "I4", "description": "matrix shape 365 x 144 in every panel", "pass": true, "detail": "ok"},
+    {"id": "I5", "description": "price>0 ; load in [1500,8000] kW", "pass": true, "detail": "violations=0 price=[0.0076,1.7936] load=[1995.72,7978.88]"},
+    {"id": "I6", "description": "NR1 audit count equals core-night nonzero -> zero cells", "pass": true, "detail": "audit=2450 delta=2450"},
+    {"id": "I7", "description": "bitwise identity outside audited cells", "pass": true, "detail": "unexpected_differences=0"},
+    {"id": "I8", "description": "output SHA-256 matches manifest", "pass": true, "detail": "checked=16 mismatched=0"}
+  ]
+}
